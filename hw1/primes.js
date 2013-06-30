@@ -6,11 +6,12 @@ var num = 100;
 var isPrime = function(k) {
     var i = 2;
     var primeFlag = true;
-    while(i < Math.sqrt(k)) {
+    while(i <= Math.ceil(Math.sqrt(k))) {
         if(k % i == 0) {
             primeFlag = false;
             break;
         }
+        i++;
     };
     return primeFlag;
 };
@@ -21,8 +22,9 @@ var testNPrimes = function(n) {
     while (arr.length !== n ) {
         if(isPrime(i)) {
             arr.push(i);
-            ++i;
+            console.log("add: " + i +"\n");
         }
+	i++;
     }
     return arr;
 };
@@ -30,7 +32,7 @@ var testNPrimes = function(n) {
 var writeFile = function(arr) {
     var string = arr.join(",");
     fs.writeFileSync(outFile, string);
-    console.log("Script: " + __filename + "\nWrote: " + out + "To: " + outFile);
+    console.log("Script: " + __filename + "\nWrote to: " + outFile);
 };
 
 writeFile(testNPrimes(num));
